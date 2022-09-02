@@ -1,0 +1,38 @@
+count                   = true
+domain                  = "funzinix.com"
+iam_name                = "ses-user"
+zone_id                 = "Z00042302E0H4BKCCW29"
+enable_verification     = true
+enable_mail_from        = false
+enable_domain           = true
+enable_mx               = false
+enable_spf_domain       = false
+enable_filter           = false
+enable_policy           = false
+enable_template         = false
+mail_from_domain        = ""
+filter_name             = ""
+filter_cidr             = ""
+filter_policy           = ""
+policy_name             = ""
+template_name           = ""
+template_subject        = ""
+template_html           = ""
+text                    = ""
+txt_type                = "TXT"
+mx_type                 = "MX"
+cname_type              = "CNAME"
+ses_records             = []
+ses_domain_dkim         = []
+dkim                    = ""
+ses_domain_mail_from    = ""
+mx_send_mail_from       = ""
+document                = []
+iam_access_key          = []
+iam_user_policy         = []
+ses_name                = "_amazonses"
+ttl                     = 600
+tags = {
+  "team" : "devops"
+  "service" : "dynamodb"
+}
