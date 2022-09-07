@@ -18,14 +18,7 @@ module "SES" {
   domain                  = var.domain
   iam_name                = var.iam_name
   zone_id                 = var.zone_id
-  enable_verification     = var.enable_verification
-  enable_mail_from        = var.enable_mail_from
-  enable_domain           = var.enable_domain
-  enable_mx               = var.enable_mx 
-  enable_spf_domain       = var.enable_spf_domain
   enable_filter           = var.enable_filter
-  enable_policy           = var.enable_policy
-  enable_template         = var.enable_template
   mail_from_domain        = var.mail_from_domain
   filter_name             = var.filter_name
   filter_cidr             = var.filter_cidr
@@ -49,6 +42,8 @@ module "SES" {
   iam_user_policy         = var.iam_user_policy
   ttl                     = var.ttl
   tags                    = var.tags
+}
+
 }        
 ```
 
@@ -56,24 +51,18 @@ module "SES" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| cname\_type | CNAME type for Record Set. | `string` | `"CNAME"` | no |
+| cname_type | CNAME type for Record Set. | `string` | `"CNAME"` | no |
 | domain | Domain to use for SES. | `string` | n/a | yes |
-| enable\_domain | Control whether or not to enable domain. | `bool` | `true` | no |
-| enable\_filter | Control whether or not to enable receipt filter. | `bool` | `false` | no |
-| enable\_mail\_from | Control whether or not to enable mail from domain. | `bool` | `false` | no |
-| enable\_mx | Control whether or not to enable mx DNS records. | `bool` | `false` | no |
-| enable\_policy | Control whether identity policy create for SES. | `bool` | `false` | no |
-| enable\_spf\_domain | Control whether or not to enable enable spf domain. | `bool` | `false` | no |
-| enable\_template | Control whether create a template for emails. | `bool` | `false` | no |
-| enable\_verification | Control whether or not to verify SES DNS records. | `bool` | `false` | no |
-| filter\_cidr | The IP address or address range to filter, in CIDR notation. | `string` | n/a | no |
-| filter\_name | The name of the filter. | `string` | n/a | no |
-| filter\_policy | Block or Allow filter. | `string` | n/a | no |
-| iam\_name | IAM username. | `string` | n/a | no |
-| mail\_from\_domain | Subdomain (of the route53 zone) which is to be used as MAIL FROM address. | `string` | n/a | no |
-| mx\_type | MX type for Record Set. | `string` | `"MX"` | no |
-| policy\_name | Name of the policy. | `string` | n/a | no |
-| ses\_records | Additional entries which are added to the \_amazonses record. | `list(string)` | `[]` | no |
+| enable_filter | Control whether or not to enable receipt filter. | `bool` | `true` | no |
+| zone_id | route53 hosted zone id in the form of a string| `string` | `"Z10131611AIJUYM9ACYYH"` | yes |
+| filter_cidr | The IP address or address range to filter, in CIDR notation. | `string` |`10.10.10.10"` | no |
+| filter_name | The name of the filter. | `string` | `"block-spammer"` | no |
+| filter_policy | Block or Allow filter. | `string` | `"Block"`| no |
+| iam_name | IAM username. | `string` | `"ses-user"` | yes |
+| mail_from_domain | Subdomain (of the route53 zone) which is to be used as MAIL FROM address. | `string` | `"mail.funzinix.com"`| no |
+| mx_type | MX type for Record Set. | `string` | `"MX"` | no |
+| policy_name | Name of the policy. | `string` | `example"` | no |
+| ses_records | Additional entries which are added to the \_amazonses record. | `list(string)` | `[]` | no |
 | ses_domain_dkim | SES domain DKIM generation resource | `list(string)` | `[]` | no |
 | dkim | Domain Keys Identified Mail | `string` | n/a | no |
 | ses_domain_mail_from | Domain Mail From in Amazon SES can be configured in Terraform | `string` | n/a | no |
@@ -83,12 +72,17 @@ module "SES" {
 | ses_name | ses name|`string` | n/a | no |
 |iam_user_policy | iam user policy| `list(string)` | `[]` | yes |
 | ttl | time to live |`number`| `600` | yes |
-| template\_html | The HTML body of the email. Must be less than 500KB in size, including both the text and HTML parts. | `string` | n/a | no |
-| template\_name | The name of the template. Cannot exceed 64 characters. You will refer to this name when you send email. | `string` | n/a | no |
-| template\_subject | The subject line of the email. | `string` | n/a | no |
-| text | The email body that will be visible to recipients whose email clients do not display HTML. | `string` | n/a | no |
-| txt\_type | TXT type for Record Set. | `string` | `"TXT"` | no |
-| zone\_id | Route53 host zone ID to enable SES. | `string` | n/a | no |
+| template_html | The HTML body of the email. Must be less than 500KB in size, including both the text and HTML parts. | `string` | `"<h1>Hello {{name}},</h1><p>Your favorite animal is {{favoriteanimal}}.</p>"` | no |
+| template_name | The name of the template. Cannot exceed 64 characters. You will refer to this name when you send email. | `string` | `template_name` | no |
+| template_subject | The subject line of the email. | `string` | `"Greetings, {{name}}!"` | no |
+| text | The email body that will be visible to recipients whose email clients do not display HTML. | `string` |`"Hello {{name}},\r\nYour favorite animal is {{favoriteanimal}}."` | no |
+| txt_type | TXT type for Record Set. | `string` | `"TXT"` | no |
+
+
+
+## Note
+
+ if enable_filter value is true make sure you have choosen the aws region (US East (N. Virginia), US West (Oregon), Europe (Ireland)) which support aws_ses_receipt_filter.
 
 
 ## Outputs

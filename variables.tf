@@ -6,38 +6,20 @@ variable "domain" {
 
 variable "iam_name" {
   type        = string
-  default     = ""
+  default     = "ses-user"
   description = "IAM username"
 }
 
-variable "enable_verification" {
-  type        = bool
-  default     = false
-  description = "Control whether or not to verify SES DNS records"
+variable "mail_from_domain" {
+  type        = string
+  default     = "mail.funzinix.com"
+  description = "Subdomain (of the route53 zone) which is to be used as MAIL FROM address"
 }
 
-variable "enable_mail_from" {
-  type        = bool
-  default     = false
-  description = "Control whether or not to enable mail from domain"
-}
-
-variable "enable_domain" {
-  type        = bool
-  default     = true
-  description = "Control whether or not to enable domain"
-}
-
-variable "enable_mx" {
-  type        = bool
-  default     = false
-  description = "Control whether or not to enable mx DNS records"
-}
-
-variable "enable_spf_domain" {
-  type        = bool
-  default     = false
-  description = "Control whether or not to enable enable spf domain"
+variable "zone_id" {
+  type        = string
+  default     = "Z10131611AIJUYM9ACYYH"
+  description = "Route53 host zone ID to enable SES"
 }
 
 variable "enable_filter" {
@@ -46,75 +28,51 @@ variable "enable_filter" {
   description = "Control whether or not to enable receipt filter"
 }
 
-variable "enable_policy" {
-  type        = bool
-  default     = false
-  description = "Control whether identity policy create for SES"
-}
-
-variable "enable_template" {
-  type        = bool
-  default     = false
-  description = "Control whether create a template for emails"
-}
-
-variable "mail_from_domain" {
-  type        = string
-  default     = ""
-  description = "Subdomain (of the route53 zone) which is to be used as MAIL FROM address"
-}
-
-variable "zone_id" {
-  type        = string
-  default     = ""
-  description = "Route53 host zone ID to enable SES"
-}
-
 variable "filter_name" {
   type        = string
-  default     = ""
+  default     = "block-spammer"
   description = "The name of the filter"
 }
 
 variable "filter_cidr" {
   type        = string
-  default     = ""
+  default     = "10.10.10.10"
   description = "The IP address or address range to filter, in CIDR notation"
 }
 
 variable "filter_policy" {
   type        = string
-  default     = ""
+  default     = "Block"
   description = "Block or Allow filter"
 }
 
 variable "policy_name" {
   type        = string
-  default     = ""
+  default     = "example"
   description = "Name of the policy"
 }
 
 variable "template_name" {
   type        = string
-  default     = ""
+  default     = "MyTemplate4"
   description = "The name of the template. Cannot exceed 64 characters. You will refer to this name when you send email"
 }
 
 variable "template_subject" {
   type        = string
-  default     = ""
+  default     = "Greetings, {{name}}!"
   description = "The subject line of the email"
 }
 
 variable "template_html" {
   type        = string
-  default     = ""
+  default     = "<h1>Hello {{name}},</h1><p>Your favorite animal is {{favoriteanimal}}.</p>"
   description = "The HTML body of the email. Must be less than 500KB in size, including both the text and HTML parts"
 }
 
 variable "text" {
   type        = string
-  default     = ""
+  default     = "Hello {{name}},\r\nYour favorite animal is {{favoriteanimal}}."
   description = "The email body that will be visible to recipients whose email clients do not display HTML"
 }
 
@@ -195,3 +153,4 @@ variable "ttl" {
   default     = 600
   description = "time to live value"
 }
+

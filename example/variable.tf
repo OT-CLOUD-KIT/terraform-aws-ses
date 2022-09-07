@@ -1,3 +1,8 @@
+variable "enable_SES_resource" {
+  type        = bool
+  description = "enable the SES resource, true or false"
+}
+
 variable "domain" {
   type        = string
   description = "Domain to use for SES"
@@ -8,54 +13,9 @@ variable "iam_name" {
   description = "IAM username"
 }
 
-variable "zone_id" {
-  type        = string
-  description = "zone id"
-}
-
-variable "enable_verification" {
-  type        = bool
-  description = "enable verification" 
-}
-
-variable "enable_mail_from" {
-  type        = bool
-  description = "Control whether or not to enable mail from domain"
-}
-
-variable "enable_domain" {
-  type        = bool
-  description = "Control whether or not to enable domain"
-}
-
-variable "enable_mx" {
-  type        = bool
-  description = "enable mx"
-}
-
-variable "enable_spf_domain" {
-  type        = bool
-  description = "enable spf domain"
-}
-
-variable "enable_SES_resource" {
-  type        = bool
-  description = "SES resources wanted to create true or false"
-}
-
 variable "enable_filter" {
   type        = bool
   description = "Control whether or not to enable receipt filter"
-}
-
-variable "enable_policy" {
-  type        = bool
-  description = "Control whether identity policy create for SES"
-}
-
-variable "enable_template" {
-  type        = bool
-  description = "Control whether create a template for emails"
 }
 
 variable "mail_from_domain" {
@@ -128,37 +88,37 @@ variable "ses_records" {
   description = "Additional entries which are added to the _amazonses record"
 }
 
-variable "ses_domain_dkim"{
+variable "ses_domain_dkim" {
   type        = list(string)
   description = "ses domain dkim"
 }
 
-variable "dkim"{
+variable "dkim" {
   type        = string
   description = "Domain Keys Identified Mail"
 }
 
-variable "ses_domain_mail_from"{
+variable "ses_domain_mail_from" {
   type        = string
   description = "ses domain mail from"
 }
 
-variable "mx_send_mail_from"{
+variable "mx_send_mail_from" {
   type        = string
   description = "mx send mail from"
 }
 
-variable "document"{
+variable "document" {
   type        = list(string)
   description = "document"
 }
 
-variable "iam_access_key"{
+variable "iam_access_key" {
   type        = list(string)
   description = "iam access key"
 }
 
-variable "iam_user_policy"{
+variable "iam_user_policy" {
   type        = list(string)
   description = "iam user policy"
 }
@@ -167,5 +127,11 @@ variable "ttl" {
   type        = number
   description = "time to live value"
 }
+
+variable "ses_name" {
+  type        = string
+  description = "ses name"
+}
+
 
 
