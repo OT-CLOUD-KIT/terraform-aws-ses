@@ -49,7 +49,7 @@ module "SES" {
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | cname_type | CNAME type for Record Set. | `string` | `"CNAME"` | no |
-| domain | Domain to use for SES. | `string` | n/a | yes |
+| domain | Domain to use for SES. | `string` | `"funzinix.com"` | yes |
 | enable_filter | Control whether or not to enable receipt filter. | `bool` | `true` | no |
 | zone_id | route53 hosted zone id in the form of a string| `string` | `"Z10131611AIJUYM9ACYYH"` | yes |
 | filter_cidr | The IP address or address range to filter, in CIDR notation. | `string` |`10.10.10.10"` | no |
