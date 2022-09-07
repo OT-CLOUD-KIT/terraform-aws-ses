@@ -1,9 +1,9 @@
 enable_SES_resource  = true
-domain               = "funzinix.com"
+domain               = ""
 iam_name             = "ses-user"
-zone_id              = "Z10131611AIJUYM9ACYYH"
+zone_id              = ""
 enable_filter        = false
-mail_from_domain     = "mail.funzinix.com"
+mail_from_domain     = ""
 filter_name          = "block-spammer"
 filter_cidr          = "10.10.10.10"
 filter_policy        = "Block"

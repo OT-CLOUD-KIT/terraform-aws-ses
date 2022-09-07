@@ -49,14 +49,14 @@ module "SES" {
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | cname_type | CNAME type for Record Set. | `string` | `"CNAME"` | no |
-| domain | Domain to use for SES. | `string` | `"funzinix.com"` | yes |
+| domain | Domain to use for SES. | `string` | `"opstree.com"` | yes |
 | enable_filter | Control whether or not to enable receipt filter. | `bool` | `true` | no |
-| zone_id | route53 hosted zone id in the form of a string| `string` | `"Z10131611AIJUYM9ACYYH"` | yes |
+| zone_id | route53 hosted zone id in the form of a string| `string` | `""` | yes |
 | filter_cidr | The IP address or address range to filter, in CIDR notation. | `string` |`10.10.10.10"` | no |
 | filter_name | The name of the filter. | `string` | `"block-spammer"` | no |
 | filter_policy | Block or Allow filter. | `string` | `"Block"`| no |
 | iam_name | IAM username. | `string` | `"ses-user"` | yes |
-| mail_from_domain | Subdomain (of the route53 zone) which is to be used as MAIL FROM address. | `string` | `"mail.funzinix.com"`| no |
+| mail_from_domain | Subdomain (of the route53 zone) which is to be used as MAIL FROM address. | `string` | `"mail.opstree.com"`| no |
 | mx_type | MX type for Record Set. | `string` | `"MX"` | no |
 | policy_name | Name of the policy. | `string` | `example"` | no |
 | ses_records | Additional entries which are added to the \_amazonses record. | `list(string)` | `[]` | no |
