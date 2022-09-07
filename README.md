@@ -41,10 +41,7 @@ module "SES" {
   ses_name                = var.ses_name
   iam_user_policy         = var.iam_user_policy
   ttl                     = var.ttl
-  tags                    = var.tags
-}
-
-}        
+}       
 ```
 
 ## Inputs
