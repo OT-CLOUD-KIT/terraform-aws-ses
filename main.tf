@@ -1,0 +1,29 @@
+module "SES" {   
+source               = "./SES"                                                                                                                                                                                                                                                           
+domain               = "funzinix.com"
+iam_name             = "ses-user"
+zone_id              = "Z00042302E0H4BKCCW29"
+enable_filter        = false
+mail_from_domain     = "mail.funzinix.com"
+filter_name          = "block-spammer"
+filter_cidr          = "10.10.10.10"
+filter_policy        = "Block"
+policy_name          = "example"
+template_name        = "MyTemplate3"
+template_subject     = "Greetings, {{name}}!"
+template_html        = "<h1>Hello {{name}},</h1><p>Your favorite animal is {{favoriteanimal}}.</p>"
+text                 = "Hello {{name}},\r\nYour favorite animal is {{favoriteanimal}}."
+txt_type             = "TXT"
+mx_type              = "MX"
+cname_type           = "CNAME"
+ses_records          = []
+ses_domain_dkim      = []
+dkim                 = ""
+ses_domain_mail_from = ""
+mx_send_mail_from    = ""
+document             = []
+iam_access_key       = []
+iam_user_policy      = []
+ses_name             = "_amazonses"
+ttl                  = 600
+}
