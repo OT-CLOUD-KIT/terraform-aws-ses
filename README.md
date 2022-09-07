@@ -13,7 +13,7 @@
 
 ```hcl
 module "SES" {
-  source                  = "git::https://github.com/OT-CLOUD-KIT/terraform-aws-ses.git"
+  source                  = "OT-CLOUD-KIT/ses/aws"
   count                   = var.enable_SES_resource == true ? 1 : 0
   domain                  = var.domain
   iam_name                = var.iam_name
